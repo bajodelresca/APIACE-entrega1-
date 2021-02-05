@@ -5,6 +5,7 @@
  */
 package App.Model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.CascadeType;
@@ -24,14 +25,15 @@ import javax.validation.constraints.NotBlank;
  */
 @Entity
 @Table(name = "team")
-public class Team implements Serializable {
+public class Team{
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @NotBlank
     @Column(name = "name")
     private String name;
-     @Column(name = "image")
+    @Column(name = "image")
     private String image;
     @Column(name = "games")
     private Long games;
@@ -48,96 +50,99 @@ public class Team implements Serializable {
     @Column(name = "createdate")
     private Long createdate;
     
+    @JsonIgnoreProperties("team")
     @OneToMany(mappedBy = "team", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     protected List<Player> repertorio;
-
+    
     public Long getId() {
         return id;
     }
-
+    
     public void setId(Long id) {
         this.id = id;
     }
-
+    
     public String getName() {
         return name;
     }
-
+    
     public void setName(String name) {
         this.name = name;
     }
-
+    
     public String getImage() {
         return image;
     }
-
+    
     public void setImage(String image) {
         this.image = image;
     }
-
+    
     public Long getGames() {
         return games;
     }
-
+    
     public void setGames(Long games) {
         this.games = games;
     }
-
+    
     public Long getMatcheswon() {
         return matcheswon;
     }
-
+    
     public void setMatcheswon(Long matcheswon) {
         this.matcheswon = matcheswon;
     }
-
+    
     public Long getLostmatches() {
         return lostmatches;
     }
-
+    
     public void setLostmatches(Long lostmatches) {
         this.lostmatches = lostmatches;
     }
-
+    
     public Long getTiedmatches() {
         return tiedmatches;
     }
-
+    
     public void setTiedmatches(Long tiedmatches) {
         this.tiedmatches = tiedmatches;
     }
-
+    
     public Long getGoals() {
         return goals;
     }
-
+    
     public void setGoals(Long goals) {
         this.goals = goals;
     }
-
+    
     public Long getGoalsc() {
         return goalsc;
     }
-
+    
     public void setGoalsc(Long goalsc) {
         this.goalsc = goalsc;
     }
-
+    
     public Long getCreatedate() {
         return createdate;
     }
-
+    
     public void setCreatedate(Long createdate) {
         this.createdate = createdate;
     }
-
+    
     public List<Player> getRepertorio() {
         return repertorio;
     }
-
+    
     public void setRepertorio(List<Player> repertorio) {
         this.repertorio = repertorio;
+        for (Player p : repertorio) {
+            p.setTeam(this);
+        }
     }
-    
     
 }

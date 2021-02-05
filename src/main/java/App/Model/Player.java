@@ -5,7 +5,9 @@
  */
 package App.Model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -26,7 +28,7 @@ import javax.validation.constraints.NotBlank;
  */
 @Entity
 @Table(name = "player")
-public class Player implements Serializable{
+public class Player {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -48,6 +50,7 @@ public class Player implements Serializable{
     @Column(name = "mvp")
     private Long mvp;
     
+    @JsonIgnoreProperties("repertorio")
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "idequipo")
     protected Team team;
@@ -58,6 +61,14 @@ public class Player implements Serializable{
 
     public void setTeam(Team team) {
         this.team = team;
+        List<Player> list=this.team.getRepertorio();
+        if(list==null){
+            list=new ArrayList<Player>();
+            
+        }
+        if(!list.contains(this)){
+            list.add(this);
+        }
     }
 
     public Long getId() {
