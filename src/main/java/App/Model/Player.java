@@ -51,7 +51,7 @@ public class Player {
     private Long mvp;
     
     @JsonIgnoreProperties("repertorio")
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "idequipo")
     protected Team team;
 

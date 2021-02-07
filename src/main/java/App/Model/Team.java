@@ -51,7 +51,7 @@ public class Team{
     private Long createdate;
     
     @JsonIgnoreProperties("team")
-    @OneToMany(mappedBy = "team", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "team", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     protected List<Player> repertorio;
     
     public Long getId() {
