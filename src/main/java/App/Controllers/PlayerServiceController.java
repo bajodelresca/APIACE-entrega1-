@@ -75,4 +75,18 @@ public class PlayerServiceController {
         service.deletePlayerById(id);
         return HttpStatus.ACCEPTED;
     }
+    
+    @GetMapping("/search/{email}/{password}")
+    public ResponseEntity<Player> getItemsByCount(@PathVariable("email") String email,@PathVariable("password") String password) {
+    	Player count = service.searchCount(email, password);
+ 
+        return new ResponseEntity<Player>(count, new HttpHeaders(), HttpStatus.OK);
+    }
+    
+     @GetMapping("/searching/{email}")
+    public ResponseEntity<Player> getItemsByEmail(@PathVariable("email") String email) {
+    	Player count = service.searchEmail(email);
+ 
+        return new ResponseEntity<Player>(count, new HttpHeaders(), HttpStatus.OK);
+    }
 }

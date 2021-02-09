@@ -101,4 +101,22 @@ public class PlayerService {
             return new ArrayList<Player>();
         }
     }
+    
+    public Player searchCount(String email, String password){
+        Player p= repository.searchCount(email,password);
+        if(p!=null){
+            return p;
+        }else{
+            return new Player();
+        }
+    }
+    
+    public Player searchEmail(String email){
+        Player p= repository.searchEmail(email);
+        if(p!=null){
+            return p;
+        }else{
+            return new Player();
+        }
+    }
 }

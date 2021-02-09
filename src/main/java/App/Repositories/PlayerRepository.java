@@ -19,4 +19,14 @@ public interface PlayerRepository extends JpaRepository<Player, Long> {
     value="SELECT * FROM player AS i WHERE i.name LIKE %?1%",
             nativeQuery=true)
     public List<Player> getByName(String name);
+    
+    @Query(
+    value="SELECT * FROM player AS i WHERE i.email LIKE ?1 and i.password LIKE ?2",
+            nativeQuery=true)
+    public Player searchCount(String email, String password);
+    
+     @Query(
+    value="SELECT * FROM player AS i WHERE i.email LIKE ?1",
+            nativeQuery=true)
+     public Player searchEmail(String email);
 }

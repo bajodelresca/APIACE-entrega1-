@@ -35,6 +35,10 @@ public class Player {
     @NotBlank
     @Column(name = "name")
     private String name;
+    @Column(name = "email")
+    private String email;
+    @Column(name = "password")
+    private String password;
     @Column(name = "image")
     private String image;
     @Column(name = "games")
@@ -143,10 +147,28 @@ public class Player {
         this.mvp = mvp;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
     @Override
     public String toString() {
-        return "Player{" + "id=" + id + ", name=" + name + ", image=" + image + ", games=" + games + ", goals=" + goals + ", assists=" + assists + ", yellowcards=" + yellowcards + ", redcards=" + redcards + ", mvp=" + mvp + '}';
+        return "Player{" + "id=" + id + ", name=" + name + ", email=" + email + ", password=" + password + ", image=" + image + ", games=" + games + ", goals=" + goals + ", assists=" + assists + ", yellowcards=" + yellowcards + ", redcards=" + redcards + ", mvp=" + mvp + ", team=" + team + '}';
     }
+
+    
     
     
     
