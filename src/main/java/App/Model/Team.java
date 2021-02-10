@@ -7,6 +7,7 @@ package App.Model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -33,7 +34,7 @@ public class Team{
     @NotBlank
     @Column(name = "name")
     private String name;
-    @Column(name = "image")
+    @Column(name = "image", columnDefinition="Text")
     private String image;
     @Column(name = "games")
     private Long games;
@@ -139,6 +140,9 @@ public class Team{
     }
     
     public void setRepertorio(List<Player> repertorio) {
+        if(repertorio==null){
+            repertorio=new ArrayList<Player>();
+        }
         this.repertorio = repertorio;
         for (Player p : repertorio) {
             p.setTeam(this);

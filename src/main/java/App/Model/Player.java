@@ -39,7 +39,7 @@ public class Player {
     private String email;
     @Column(name = "password")
     private String password;
-    @Column(name = "image")
+    @Column(name = "image", columnDefinition="Text")
     private String image;
     @Column(name = "games")
     private Long games;
